@@ -23,8 +23,7 @@ const getAllUsers = (req, res) =>{
 
 //findUSer
 const findOneUser = (req, res) => {
-    const idUser = req.params.id
-    TaskUser.findOne({_id: idUser}, (err, task)=>{
+    TaskUser.findOne({_id: req.body.id}, (err, task)=>{
         if(err)
             res.send({success: false})
         res.send(task)
@@ -47,7 +46,7 @@ const updateUser = (req, res) => {
 
 //DELETE
 const deleteUser = (req, res) => {
-    TaskUser.remove({_id: req.params.id}, (err, task)=>{
+    TaskUser.remove({_id: req.body.id}, (err, task)=>{
         if(err)
             res.send({success: false})
         res.send({success: true})

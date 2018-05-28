@@ -1,4 +1,11 @@
-<form id="formNewUser" role="form" data-toggle="validator">
+<hr />
+<a id="addForm" class="btn btn-default" value="false">Ver formulario</a>
+<hr />
+
+<div id="result">
+</div>
+
+<form id="formNewUser" role="form" data-toggle="validator" >
     <div class="form-group">
         <label for="name" class="control-label">Name:</label>
         <input type="name" class="form-control" id="primeiroNome" name="primeiroNome" required>
@@ -14,7 +21,20 @@
     </div>
 </form>
 
-<div id="result">
-</div>
 <script type="text/javascript" src="../ajax/newUserList.js"></script>
     
+
+<script>
+    $( "#addForm" ).click(function() {
+        if($(this).text()=="Ver formulario")
+        {
+        $(this).text("Esconder formulario");
+        console.log($('#addForm').text())
+        } else {
+        $(this).text("Ver formulario");
+        console.log($('#addForm').text())
+        }
+      $( "#formNewUser" ).toggle( );
+    });
+    
+    </script>
