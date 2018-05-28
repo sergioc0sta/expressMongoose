@@ -8,9 +8,9 @@ $(document).ready(function(){
 function updateRow(isimd){
     console.log(isimd)
     $.ajax({
-     url: 'api/find',
-     type: 'POST',
-     data: { "id":isimd.toString()},
+     url: "api/find/"+isimd.toString(),
+     type: 'GET',
+     
      success: function(response){
     
         $("#updateValues").toggle()
@@ -47,7 +47,7 @@ $('#updateValues').validator().on('submit', (e)=>{
             if(data.firstName !== "" )
             {
                 $.ajax({
-                type: 'POST',
+                type: 'PUT',
                 url: "api/post/"+id,
                 data: JSON.stringify(data),
                 contentType: 'application/json',
@@ -67,7 +67,7 @@ $('#updateValues').validator().on('submit', (e)=>{
 function deleteRow(isimd){
     $.ajax({
      url: 'api/delete',
-     type: 'POST',
+     type: 'DELETE',
      data: { "id":isimd.toString()},
      success: function(response){
         $('#updateValues')[0].reset();

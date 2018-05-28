@@ -23,7 +23,7 @@ const getAllUsers = (req, res) =>{
 
 //findUSer
 const findOneUser = (req, res) => {
-    TaskUser.findOne({_id: req.body.id}, (err, task)=>{
+    TaskUser.findOne({_id: req.params.id}, (err, task)=>{
         if(err)
             res.send({success: false})
         res.send(task)
