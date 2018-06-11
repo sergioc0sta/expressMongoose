@@ -131,6 +131,8 @@ const findOneUser = (req, res) => {
 //PUT
 const updateUser = (req, res) => {
     const idUser = req.params.id
+    const salt  = bcrypt.genSaltSync()
+    req.body.password = bcrypt.hashSync(req.body.password, salt)
     req.body.update_at = new Date()
     TaskUser.findOneAndUpdate({_id: idUser}, req.body, {new: true},  (err, task)=>{
         if(err)
