@@ -10,12 +10,17 @@ function updateRow(isimd){
     $.ajax({
      url: "api/find/"+isimd.toString(),
      type: 'GET',
+     headers: {
+        'authorization': String(JSON.parse( localStorage.getItem("user") ).token)
+    },
      
      success: function(response){
     
         $("#updateValues").toggle()
         $('#firstName').val(response.firstName)
         $('#secondName').val(response.firstName)
+        $('#email').val(response.email === undefined ? 'empty' : response.email)
+        $('#password').val(response.password )
         $('#id').val(response._id)
          
      },
@@ -37,6 +42,8 @@ $('#updateValues').validator().on('submit', (e)=>{
         var data = {};
         data.firstName = $('#firstName').val();
         data.secondName = $('#secondName').val();
+        data.email = $('#email').val();
+        data.password = $('#password').val();
         var id = $('#id').val() || ""
         if(id === "")
         {
@@ -49,6 +56,9 @@ $('#updateValues').validator().on('submit', (e)=>{
                 $.ajax({
                 type: 'PUT',
                 url: "api/post/"+id,
+                headers: {
+                    'authorization': String(JSON.parse( localStorage.getItem("user") ).token)
+                },
                 data: JSON.stringify(data),
                 contentType: 'application/json',
                 success: function (result) {
@@ -68,6 +78,9 @@ function deleteRow(isimd){
     $.ajax({
      url: 'api/delete',
      type: 'DELETE',
+     headers: {
+        'authorization': String(JSON.parse( localStorage.getItem("user") ).token)
+    },
      data: { "id":isimd.toString()},
      success: function(response){
         $('#updateValues')[0].reset();
@@ -83,6 +96,9 @@ var response = '';
 $.ajax({
 type: 'GET',
 url: 'api/posts',
+headers: {
+    'authorization': String(JSON.parse( localStorage.getItem("user") ).token)
+},
 success: function (data) {
     var txt = "";
     txt += "<table id = 'myTabela' class='table' style='padding:10px; width:70%; margin:0% 15% 0% 15%'>";
@@ -93,7 +109,10 @@ success: function (data) {
  });
  txt += "</tbody></table>";
 
-$("#result").html(txt);
+$("#result").html(txt)
 }
-});
+})
 }
+
+
+

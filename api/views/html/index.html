@@ -27,12 +27,22 @@
 					<span class="icon-bar"></span>
 				</button>
 				<a class="navbar-brand" href="#">ESMADPw2</a>
-
+				<ul class="user-menu">
+					<li class="dropdown pull-right">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> User <span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="#"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+							<li><a href="#"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
+							<li><a id="myBtn" onclick="myFunction()"><span   class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+							
+						</ul>
+					</li>
+				</ul>
 			</div>
 		</div><!-- /.container-fluid -->
 	</nav>
 	
-		
+
 	<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
 		<ul class="nav menu" id="sidebarMenu">
 	
@@ -46,11 +56,14 @@
 	<div id="contentBody" class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
 			
 		</div>
+		
 		<script src="js/jquery-1.11.1.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/bootstrap-datepicker.js"></script>
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.10.2/validator.min.js"></script>
+		<script type="text/javascript" src="../ajax/index.js"></script>
+		<script type="text/javascript" src="../ajax/logout.js"></script>
 		<script>
 			$(document).ready(function(event) {
 				function getEventTarget(e) {
@@ -85,11 +98,11 @@
 					var targetID = target.id;
 				   //alert(targetID);
 					load_home("contentBody", targetID);
-	
-	
+
 				};
 			});
 		</script>
+
 	
 </body>
 

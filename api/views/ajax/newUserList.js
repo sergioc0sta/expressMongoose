@@ -14,10 +14,16 @@ $('#formNewUser').validator().on('submit', (e)=>{
         var data = {};
         data.firstName = $('#primeiroNome').val();
         data.secondName = $('#segundoNome').val();
+        data.email = $('#email').val();
+        data.password = $('#password').val();
+        //console.log($('#escolha').val())
 
          $('#formNewUser')[0].reset();
         $.ajax({
             type: 'POST',
+            headers: {
+                'authorization': String(JSON.parse( localStorage.getItem("user") ).token)
+            },
             url: 'api/post',
             data: JSON.stringify(data),
             contentType: 'application/json',
@@ -34,6 +40,9 @@ function refreshUsers() {
     $.ajax({
         type: 'GET',
         url: 'api/posts',
+        headers: {
+            'authorization': String(JSON.parse( localStorage.getItem("user") ).token)
+        },
         success: function (data) {
             var txt = "";
             txt += "<table class='table' style='padding:10px; width:70%; margin:0% 15% 0% 15%'>"; 
